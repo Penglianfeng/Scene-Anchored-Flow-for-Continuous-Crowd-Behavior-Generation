@@ -1,0 +1,69 @@
+dataset_name: sdd
+dataset_family: sdd
+dataset_path: ./datasets/SDD/
+dataset_preprocessor: SDDPreprocessor
+dataset_preprocessed_path: ./datasets/preprocessed/sdd/
+dataset_augmentation: ['hflip', 'vflip', 'tp', 'rev']
+dataset_fps: 30
+dataset_test:
+  - coupa_0
+  - coupa_1
+  - gates_2
+  - hyang_0
+  - hyang_1
+  - hyang_3
+  - hyang_8
+  - little_0
+  - little_1
+  - little_2
+  - little_3
+  - nexus_5
+  - nexus_6
+  - quad_0
+  - quad_1
+  - quad_2
+  - quad_3
+dataset_train:
+  - bookstore_0
+  - bookstore_1
+  - bookstore_2
+  - bookstore_3
+  - bookstore_4
+  - bookstore_5
+  - bookstore_6
+  - coupa_2
+  - coupa_3
+  - deathCircle_0
+  - deathCircle_1
+  - deathCircle_2
+  - deathCircle_3
+  - deathCircle_4
+  - gates_0
+  - gates_1
+  - gates_3
+  - gates_4
+  - gates_5
+  - gates_6
+  - gates_7
+  - gates_8
+  - hyang_2
+  - hyang_4
+  - hyang_5
+  - hyang_6
+  - hyang_7
+  - hyang_9
+  - hyang_10
+  - hyang_11
+  - hyang_12
+  - hyang_13
+  - hyang_14
+  - nexus_0
+  - nexus_1
+  - nexus_2
+  - nexus_3
+  - nexus_4
+  - nexus_7
+  - nexus_8
+  - nexus_9
+  - nexus_10
+  - nexus_11

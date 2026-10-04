@@ -1,0 +1,70 @@
+trainer_name: CrowdES_trainer
+crowd_emitter:
+  emitter_pre:
+    augmentation: ["rev"]
+    cache_dir: "./cache/"
+    checkpoint_dir: "./checkpoints/{}/emitter_pre/"
+    model_pretrained: "./checkpoints/pretrained/segformer-b0-finetuned-cityscapes-1024-1024/"
+    blur_sigma: 12
+    train_batch_size: 8
+    eval_batch_size: 8
+    gradient_accumulation_steps: 1
+    num_train_epochs: 128
+    lr_scheduler_type: "polynomial"
+    learning_rate: 0.0001
+    num_warmup_steps: 0
+    seed: 0
+    use_logger: false
+    logger_type: "wandb"
+
+  emitter:
+    checkpoint_dir: "./checkpoints/{}/emitter/"
+    train_batch_size: 512
+    eval_batch_size: 10 # 10
+
+    num_workers: 8
+    pin_memory: true
+    persistent_workers: true
+
+    gradient_accumulation_steps: 1
+    num_train_epochs: 16
+
+    # lr_scheduler_type: "polynomial"
+    # learning_rate: 0.0001
+    # num_warmup_steps: 0
+    optimizer_type: "AdamW"
+    learning_rate: 0.0001
+    weight_decay: 0.01
+    lr_scheduler_type: "cosine"
+    num_warmup_steps: 2000
+    min_learning_rate: 0.000001
+    grad_norm_clip: 1.0
+    val_every_n_epochs: 5
+    max_val_batches: 200
+    save_best_only: false
+    save_every_n_epochs: 5
+    cudnn_deterministic: false
+    cudnn_benchmark: true
+    allow_tf32: true
+    loss_weights:
+      cls: 1.0
+      reg: 1.0
+      vel: 0.2
+
+    seed: 0
+    use_logger: false
+    logger_type: "wandb"
+
+crowd_simulator:
+  simulator:
+    checkpoint_dir: "./checkpoints/{}/dynamics/"
+    train_batch_size: 2048
+    eval_batch_size: 2048
+    gradient_accumulation_steps: 1
+    num_train_epochs: 64
+    lr_scheduler_type: "polynomial"
+    learning_rate: 0.0001
+    num_warmup_steps: 0
+    seed: 0
+    use_logger: false
+    logger_type: "wandb"

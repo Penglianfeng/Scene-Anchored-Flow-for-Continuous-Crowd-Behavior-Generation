@@ -1,0 +1,91 @@
+model_name: CrowdES
+dataset_config: ./configs/dataset/univ.yaml
+trainer_config: ./configs/trainer/SAFM_trainer_ethucy.yaml
+crowd_emitter:
+  type: CrowdES
+  emitter_pre:
+    input_types:
+    - scene_seg
+    output_types:
+    - scene_appearance
+    - scene_population
+    max_population: 128
+    population_density_temperature: 0.5
+    population_probability_threshold: 0.01
+    population_multiplier: 3.0
+    image_size:
+    - 1024
+    - 1024
+  emitter:
+    input_types:
+    - scene_seg
+    - scene_population
+    - scene_appearance
+    output_types:
+    - agent_type
+    - frame_origin
+    - agent_velocity
+    - origin_x
+    - origin_y
+    - goal_x
+    - goal_y
+    window_size: 10
+    window_stride: 0.2
+    max_num_agents_pad: 64
+    image_size:
+    - 128
+    - 128
+    flow_denoising_method: fm
+    flow_sampling_steps: 100
+    flow_solver: lin_poly
+    flow_lin_poly_p: 5
+    flow_lin_poly_long_step: 1000
+    flow_t_schedule: logit_normal
+    flow_logit_norm_mean: 0.0
+    flow_logit_norm_std: 1.0
+    flow_objective: pred_data
+    flow_sigma_data: 1.0
+    use_local_condition: true
+    local_condition_time_gamma: 4.0
+    local_condition_zero_init: true
+    flow_weight_joint: 0.25
+    flow_weight_od_cover: 0.0021
+    od_cover_temperature: 0.05
+    od_cover_feature_weights:
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    flow_weight_anchor: 0.005
+    anchor_eps: 0.0001
+    anchor_population_power: 0.5
+    flow_weight_od_mmd: 0.0
+    flow_weight_usage_entropy: 0.0
+    emitter_rerank_num_candidates: 1
+crowd_simulator:
+  type: CrowdES
+  locomotion:
+    walkable_class:
+    - tree
+    - sidewalk
+    - road
+  simulator:
+    environment_types:
+    - scene_seg
+    - scene_population
+    environment_size:
+    - 64
+    - 64
+    environment_pixel_meter: 0.25
+    simulator_fps: 5
+    history_length: 10
+    future_length: 10
+    window_stride: 1
+    interaction_range: 4.0
+    interaction_max_num_agents: 4
+    control_time_offset: 2
+    latent_dim: 8
+    hidden_dim: 2048
+    latent_temperature: 1.0
+    latent_mixup_alpha: 1.0

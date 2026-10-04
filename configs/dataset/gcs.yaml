@@ -1,0 +1,11 @@
+dataset_name: gcs
+dataset_family: gcs
+dataset_path: ./datasets/GCS/
+dataset_preprocessor: GCSPreprocessor
+dataset_preprocessed_path: ./datasets/preprocessed/gcs/
+dataset_augmentation: ["rev"]
+dataset_fps: 25
+dataset_test:
+  - 20%
+dataset_train:
+  - 80%
