@@ -1,0 +1,17 @@
+diffusers==0.30.3
+dtaidistance
+joblib
+numpy
+opencv-python
+pandas
+pillow
+POT
+pykalman
+pynavmesh
+PyYAML
+scikit-image
+scikit-learn
+scipy
+torch==2.2.2
+tqdm
+transformers==4.44.2
